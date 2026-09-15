@@ -3,7 +3,7 @@
 
 ## Внутрішня мотивація
 
-![](https://unitalent.notion.site/image/attachment%3A29327cd0-45ab-48a4-9bdd-b277569c6f21%3AIMG_2187.jpeg?table=block&id=3679974b-8774-80a7-986b-c229d4cd4fbd&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=390&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./IMG_2187.jpeg)
 
 Архітектор відчуває світ як набір поламаних механізмів. І звичайно, цьому світу потрібен новий герой, який все впорядкує.
 
@@ -25,7 +25,7 @@
 
 ## Прихована сила
 
-![](https://unitalent.notion.site/image/attachment%3Ac6d8a6fa-3f6e-4616-b819-df36fc0327ea%3AIMG_2185.jpeg?table=block&id=3679974b-8774-80ae-ab77-f81d3de99f13&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=640&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./IMG_2185.jpeg)
 
 Поки інші архетипи намагаються вгадати тренд або підлаштуватися під мінливий настрій ринку, Архітектор спирається на фундамент, який не залежить від сьогоднішніх новин. Його неможливо вибити з колії тимчасовою кризою, бо для нього будь-який збій це лише прогнозований етап циклу, який він уже врахував.
 
@@ -33,19 +33,19 @@
 
 ## Перешкоди
 
-![](https://unitalent.notion.site/image/attachment%3A8c956f15-c6c8-475b-8ef5-30a260fa31fa%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-8043-9f85-de4a7069cdbc&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Складний для більшості. Він упаковує свої продукти в такі терміни та логічні ланцюжки, що продратися крізь них може лише інший Архітектор.
 
 Аудиторія визнає його геніальність, але купує у когось простішого, бо Архітектора банально важко сприймати.
 
-![](https://unitalent.notion.site/image/attachment%3A27769e86-f514-4411-9899-d749617205ee%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-80c1-b342-c0be36b53c97&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Емоційна глухота. Для Архітектора світ — це система, а люди в ній — маленькі ґвінтіки, які мають діяти логічно. Емоції він вважає чимось зайвим і заважаючим.
 
 У маркетингу це виглядає як повна відсутність емпатії: його тексти холодні, а обіцянки раціональні. А це суперечить тому, як люди насправді приймають рішення про покупку.
 
-![](https://unitalent.notion.site/image/attachment%3A97d72a9f-eb1f-4ea7-9384-21da5e55a279%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-8041-b414-dca926bea3cf&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Підготовка може тривати вічність. Йому завжди здається, що база даних недостатня, а контекст не до кінця розкритий. Він плутає готовність до ринку з інтелектуальною довершеністю.
 
@@ -72,7 +72,7 @@
 
 ## Для команди і продюсера
 
-![](https://unitalent.notion.site/image/attachment%3A661a7895-e77f-4997-bba8-b821ca7a7afc%3AIMG_2181.jpeg?table=block&id=3679974b-8774-80da-8b7a-ddf850215960&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=390&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./IMG_2181.jpeg)
 
 Архітектор — це стратегічний актив.
 

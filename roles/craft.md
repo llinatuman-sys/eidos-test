@@ -3,7 +3,7 @@
 
 ## Внутрішня мотивація
 
-![](https://unitalent.notion.site/image/attachment%3A1b013430-7011-4433-9949-c9f5f9e649d2%3AIMG_2167.jpeg?table=block&id=3679974b-8774-80c2-bdec-e14dc8e80965&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=390&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./IMG_2167.jpeg)
 
 Ремісник біжить за власним ідеалом.
 
@@ -21,7 +21,7 @@
 
 ## Прихована сила
 
-![](https://unitalent.notion.site/image/attachment%3A01ad7ebb-e7f4-46cb-9e90-78f6120f7a89%3AIMG_2168.jpeg?table=block&id=3679974b-8774-808f-8145-cc47f2060c59&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=390&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./IMG_2168.jpeg)
 
 Ремісник = монополіст. Недосяжна технічна перевага робить його незамінним.
 
@@ -35,15 +35,15 @@
 
 ## Перешкоди
 
-![](https://unitalent.notion.site/image/attachment%3A8c956f15-c6c8-475b-8ef5-30a260fa31fa%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-80e4-a72a-f080338e0699&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Прокляття перфекціоніста. Він часто не може масштабуватися, бо нікому не довіряє роботу. Наше улюблене: «Ніхто не зробить краще за мене». У результаті він стає заручником власної майстерності: працює 24/7, не може делегувати й вигорає, намагаючись особисто докрутити кожну гайку.
 
-![](https://unitalent.notion.site/image/attachment%3A27769e86-f514-4411-9899-d749617205ee%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-8040-8d55-d3ee6feea7d8&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Вовк-одинак-інтроверт. Оскільки він ненавидить говорити про роботу, він часто здається холодним, зверхнім або нетовариським. Це заважає йому будувати партнерства та команду. Він може створити геніальну річ, про яку ніхто не дізнається, бо він посоромився або полінувався про неї розповісти.
 
-![](https://unitalent.notion.site/image/attachment%3A97d72a9f-eb1f-4ea7-9384-21da5e55a279%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-8035-9338-de863b09255d&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Негнучкість. Ремісник настільки вірний своєму почерку, що може ігнорувати зміни ринку. Якщо світ перейшов на цифру, а він ідеально робить плівку, він може до останнього залишатися в «старій школі», навіть якщо це веде до мінусів на картці.
 
@@ -74,7 +74,7 @@
 
 ## Для команди і продюсера
 
-![](https://unitalent.notion.site/image/attachment%3A10bdaedc-382c-4dea-a223-a8152965aed1%3AIMG_6156.jpeg?table=block&id=3679974b-8774-8065-a635-d30bbab486d8&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=450&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./IMG_6156.jpeg)
 
 Ваша стратегія: високий чек, вузька аудиторія, бездоганна упаковка. Ви продаєте Rolex серед курсів чи послуг.
 

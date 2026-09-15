@@ -3,7 +3,7 @@
 
 ## Внутрішня мотивація
 
-![](https://unitalent.notion.site/image/attachment%3A4e3f8509-0ea4-445f-8746-eb0001ffcc65%3AIMG_2160.jpeg?table=block&id=3679974b-8774-802d-baf1-e35713dd1451&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=640&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./IMG_2160.jpeg)
 
 Розвідник боїться запізнитися в майбутнє. Для нього немає нічого нуднішого, ніж вчорашні новини або те, що вже стало трендом. Його драйв — бути там, де ще нікого немає, і бачити зв'язки, які інші помітять лише через рік.
 
@@ -19,7 +19,7 @@
 
 ## Прихована сила
 
-![](https://unitalent.notion.site/image/attachment%3A979104cb-5ff7-46bd-bfb2-6ad92f8e801d%3AIMG_2161.jpeg?table=block&id=3679974b-8774-8083-b0a3-de540eb968df&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=310&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./IMG_2161.jpeg)
 
 Коли Розвідник каже, що певна технологія чи ніша скоро злетить, він додає своєму оточенню впевненість зайти туди першими. Він забирає на себе найважчу роботу: просіювання сміття, залишаючи клієнтам цінні готові гіпотези.
 
@@ -29,15 +29,15 @@
 
 ## Перешкоди
 
-![](https://unitalent.notion.site/image/attachment%3A76654fed-6cd1-44a4-8bf1-129e29ffeb14%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-80ef-9c84-cb29ba0f656f&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Геній, якого ніхто не розуміє. Він починає продавати продукт ринку, який до нього ще просто не дозрів.
 
-![](https://unitalent.notion.site/image/attachment%3Af92f53ee-5503-41a6-9984-7cd3c4451d76%3AUntitled_design.png?table=block&id=3679974b-8774-80fe-a340-d901caf3fcf9&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./Untitled_design.png)
 
 Втрата фокусу через «нову блискучу іграшку». Розвідник фанатіє від новизни. Як тільки він у чомусь розібрався, йому стає нудно.
 
-![](https://unitalent.notion.site/image/attachment%3A8da7a704-0492-4ce1-acb6-708b5bba013c%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-8089-a966-ee6de548ce11&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Знецінення бази та операційки. Він зневажає рутину, таблички й повторювані процеси.
 
@@ -59,7 +59,7 @@
 
 ## Для команди і продюсера
 
-![](https://unitalent.notion.site/image/attachment%3Aebe7cf09-ae87-47e4-b00e-104ad686b48f%3AIMG_2164.jpeg?table=block&id=3679974b-8774-80fe-b9c5-d7b41a9f4a0d&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=470&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./IMG_2164.jpeg)
 
 Для команди та продюсера Розвідник — це актив з високою волатильністю.
 

@@ -3,7 +3,7 @@
 
 ## Внутрішня мотивація
 
-![](https://unitalent.notion.site/image/attachment%3Ab21d80f1-3c36-41b6-9703-d75f0cc1cec6%3AIMG_2170.jpeg?table=block&id=3679974b-8774-80d9-928a-edbb93e46457&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=640&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./IMG_2170.jpeg)
 
 Друг прагне бути почутим і почути інших, щоб подолати самотність. Він створює контент і продукти, щоб знайти «своїх» і дати їм відчуття безпечного місця.
 
@@ -19,7 +19,7 @@
 
 ## Прихована сила
 
-![](https://unitalent.notion.site/image/attachment%3A2324ef75-eeb7-434a-9c66-bafe5343ecde%3AIMG_2173.jpeg?table=block&id=3679974b-8774-80ff-8550-ce2488f80e4d&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=390&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./IMG_2173.jpeg)
 
 Друг має феноменальну лояльність аудиторії. Від нього не йдуть до конкурентів, навіть якщо там дешевше чи технологічніше. Клієнти купують у нього, бо він свій.
 
@@ -29,15 +29,15 @@
 
 ## Перешкоди
 
-![](https://unitalent.notion.site/image/attachment%3A8c956f15-c6c8-475b-8ef5-30a260fa31fa%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-80ec-ba77-c9dd34fd940b&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Розмиті кордони. Йому важко відмовляти, важко підвищувати ціни (це ж для друзів) і важко делегувати підтримку.
 
-![](https://unitalent.notion.site/image/attachment%3A27769e86-f514-4411-9899-d749617205ee%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-80fa-80a8-fbff2a5b1b3b&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Заручник щирості. Якщо він захоче змінити нішу або просто побути наодинці, аудиторія може сприйняти це як зраду.
 
-![](https://unitalent.notion.site/image/attachment%3A97d72a9f-eb1f-4ea7-9384-21da5e55a279%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-8010-b046-ef959ad9c9a4&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Брак системності. Друг часто пливе за течією емоцій. Він може скасувати запуск, бо немає ресурсу або не той вайб.
 
@@ -57,7 +57,7 @@
 
 ## Для команди і продюсера
 
-![](https://unitalent.notion.site/image/attachment%3Ae6f8550d-9a88-4623-a09d-0b8128f5137e%3AIMG_2180.jpeg?table=block&id=3679974b-8774-80c4-9d57-f5da61400ada&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=390&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./IMG_2180.jpeg)
 
 Якщо Реміснику ви будували стіни, щоб його не чіпали, то Другу ви будуєте контейнер, який не дасть йому розплескати себе на всю аудиторію і вигоріти за один запуск.
 

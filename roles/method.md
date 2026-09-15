@@ -3,7 +3,7 @@
 
 ## Внутрішня мотивація
 
-![](https://unitalent.notion.site/image/attachment%3Acf7a96ab-5c5e-4725-a8be-1c8089b5fe48%3AJTBD.jpeg?table=block&id=3649974b-8774-8064-825d-c8bfdcdd0f65&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=350&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./JTBD.jpeg)
 
 Методолог — це такий тривожник з синдромом Бога.
 
@@ -27,7 +27,7 @@
 
 ## Прихована сила
 
-![](https://unitalent.notion.site/image/attachment%3A0d32f40c-1de6-4dd0-9b98-b1f4b45af10e%3Aaf7787b3-742a-45b6-aee5-4870c2741ab3.png?table=block&id=3679974b-8774-8020-b2db-d8b67f128a24&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=640&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./af7787b3-742a-45b6-aee5-4870c2741ab3.png)
 
 Може здатися, що Методолог — це та найрозумніша людина в кімнаті. Але він просто прикидається. Але так здається, бо він має сильний вплив, його рамки стають мовою, якою говорять інші.
 
@@ -43,17 +43,17 @@
 
 ## Перешкоди
 
-![](https://unitalent.notion.site/image/attachment%3Af67d572b-fd48-4aef-8f3e-fdc0bab5b999%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-8094-ab3d-f830cf3c70a0&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Сліпий до нового. Методолог починає відкидати явища, які не вкладаються в його картинку світу. Не свідомо, просто мозок їх не помічає. Так Методолог-дослідник непомітно стає Методологом-сектантом.
 
-![](https://unitalent.notion.site/image/attachment%3Aa6fe399a-4ab7-4279-87ea-0c58bde9ae42%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-806f-93fd-e3f299d16e97&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Абʼюзивні стосунки з простотою. Рамка має бути простою, щоб жити без автора, але інстинкт тягне в протилежний бік: додати четвертий рівень, врахувати виняток, уточнити нюанс. В результаті система стає точнішою, але менш придатною для використання. Найбільші Методологи в історії — ті, хто вмів різати власну глибину. Різати і плакати. Плакати і різати.
 
 Піраміда Маслоу вісімдесят років на кожному тренінгу, і вісімдесят років дослідники знаходять у ній культурні сліпі зони. Спрощення зробило її безсмертною. Точність зробила б її нішевою і маловідомою.
 
-![](https://unitalent.notion.site/image/attachment%3A7ef72978-1b08-4668-be25-ee8b639239df%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-8024-87aa-e5d8cf86267b&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Перфекціонізм як спосіб саботажу. «Ще не готово» може тривати роками. За цим стоїть страх, що покажеш, а не оцінять. Або оцінять, але знайдуть дірку в логіці. Поки методологи доводять до ідеалу, хтось інший вже продає гіршу версію їхньої ідеї.
 
@@ -71,7 +71,7 @@
 
 ## Для команди і продюсера
 
-![](https://unitalent.notion.site/image/attachment%3Ad333594c-8044-4be0-9dbb-88de931bdd14%3AIMG_2072.jpeg?table=block&id=3649974b-8774-8078-a7ad-da79f8b759d3&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=640&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./IMG_2072.jpeg)
 
 Найгірше, що можна зробити з Методологом — це «адаптувати його під ринок».
 

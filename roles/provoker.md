@@ -3,7 +3,7 @@
 
 ## Внутрішня мотивація
 
-![](https://unitalent.notion.site/image/attachment%3Ae0097799-63da-43db-867e-09a63a0b80de%3AIMG_2148.jpeg?table=block&id=3679974b-8774-80cc-af2e-e006142bf423&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=220&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./IMG_2148.jpeg)
 
 Коли всі навколо роблять вигляд, що «король одягнений», Провокатор відчуває це як брак кисню. Для нього мовчання там, де все очевидно, це зрада ідентичності.
 
@@ -25,7 +25,7 @@
 
 ## Прихована сила
 
-![](https://unitalent.notion.site/image/attachment%3Aca987b26-3b2d-4ef6-958c-7d75f23248ad%3AIMG_2149.jpeg?table=block&id=3679974b-8774-80fd-8cc3-cbd641603af5&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=390&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./IMG_2149.jpeg)
 
 Провокатор не просто бісить, він створює точку неповернення.
 
@@ -39,21 +39,21 @@
 
 ## Перешкоди
 
-![](https://unitalent.notion.site/image/attachment%3A8c956f15-c6c8-475b-8ef5-30a260fa31fa%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-80cd-8c96-c9b1c36acc4b&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Плутанина між змістом та шумом. Провокатор може так захопитися підпалюванням дуп, що забуває, навіщо він це робить. У результаті він перетворюється з глибокого діагноста на звичайного клоуна.
 
-![](https://unitalent.notion.site/image/attachment%3A27769e86-f514-4411-9899-d749617205ee%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-80f1-b5d4-c6a5d9128582&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Емоційна ізоляція. Так як провокатор постійно тестує кордони, люди (навіть близькі та команда) починають тримати дистанцію. Він щиро дивується, чому йому немає з ким просто випити вина і помовчати, або чому від нього йдуть сильні партнери.
 
-![](https://unitalent.notion.site/image/attachment%3A97d72a9f-eb1f-4ea7-9384-21da5e55a279%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-8042-89bf-e1915aa67e7a&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Неможливість працювати вдовгу. Провокатор — це спринтер. Йому важко будувати щось, що потребує терпіння й рутини. Він хоче результату тут і зараз.
 
 А ще часто руйнує власні проєкти на етапі, коли вони стають стабільними, а значить нудними.
 
-![](https://unitalent.notion.site/image/attachment%3A44686d35-4150-420d-88f0-942ba4d93289%3Aefd2c745-07f2-40b0-a54d-2842f0d608d8.png?table=block&id=3679974b-8774-809b-8e17-c737cc1749f0&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=50&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./efd2c745-07f2-40b0-a54d-2842f0d608d8.png)
 
 Пастка «заручника образу». Провокатор звикає, що аудиторія чекає від нього шоу. А потім боїться бути спокійним або щирим, бо бренд вимагає щодня тримати середній палець піднятим.
 
@@ -73,7 +73,7 @@
 
 ## Для команди і продюсера
 
-![](https://unitalent.notion.site/image/attachment%3A50d4238b-eaf7-402e-aafb-6eeac12cb77f%3AIMG_2150.jpeg?table=block&id=3679974b-8774-80dd-8128-c12879ecaccf&spaceId=a8538b50-66d8-4064-a7fd-6d44fdb5d402&width=390&userId=&cache=v2&imgBuildSrc=requestProxiedImageUrl)
+![](./IMG_2150.jpeg)
 
 Робота з Провокатором — це як керувати ядерним реактором: якщо знати, які важелі тиснути, матимеш нескінченну енергію, якщо ні, все злетить у повітря.
 
