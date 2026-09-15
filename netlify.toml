@@ -1,5 +1,12 @@
 [build]
   publish = "."
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/result-leads"
+  to = "/.netlify/functions/result-leads"
+  status = 200
+  force = true
 
 [[redirects]]
   from = "/*"
