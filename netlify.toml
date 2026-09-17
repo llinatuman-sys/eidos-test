@@ -9,6 +9,12 @@
   force = true
 
 [[redirects]]
+  from = "/api/track-event"
+  to = "/.netlify/functions/track-event"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
