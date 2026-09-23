@@ -12,3 +12,4 @@
 .notionResultPage .resultOverview{background:#0d0b09!important}
 
 .notionResultPage .sourceMedia img,.notionResultPage .sourceMediaSmall img,.notionResultPage .resultRoleCardImage{border-radius:0!important}
+.pdfSpinner{display:inline-block;animation:eidosPdfSpin 1s linear infinite}@keyframes eidosPdfSpin{to{transform:rotate(360deg)}}@media print{.pdfSpinner{display:none!important}}

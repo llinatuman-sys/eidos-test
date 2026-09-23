@@ -2,6 +2,16 @@
   publish = "."
   functions = "netlify/functions"
 
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@sparticuz/chromium-min"]
+
+[[redirects]]
+  from = "/api/generate-pdf"
+  to = "/.netlify/functions/generate-pdf"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/api/result-leads"
   to = "/.netlify/functions/result-leads"
