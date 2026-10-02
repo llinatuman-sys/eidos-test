@@ -1,68 +1,34 @@
 // Generates the same PDF the "Завантажити PDF" button used to get via
-// window.print() — but server-side, with headless Chromium, so the visitor
-// gets a file handed straight to them with no browser print dialog and no
-// manual "turn off headers and footers" step.
+// window.print() — server-side, so the visitor gets a file handed straight
+// to them with no browser print dialog and no manual "turn off headers and
+// footers" step.
 //
-// This is a Netlify Functions v2 (ESM) function: it exports a default
-// function that receives a standard Request and returns a standard
-// Response, which is what lets us stream a binary PDF back directly
-// (v1/CommonJS functions have to base64-encode the whole body into one
-// JSON-ish payload, which is capped around 6MB — too tight for some of
-// these PDFs; v2's Response path supports up to 20MB, comfortably above
-// what any of these PDFs run).
+// This version calls PDFShift (https://pdfshift.io), a managed HTML-to-PDF
+// API, instead of launching headless Chromium ourselves inside this
+// function. Two earlier approaches were tried and dropped:
+//   - @sparticuz/chromium + puppeteer-core, launching Chromium directly in
+//     the function: kept failing at runtime in production (batch49/50),
+//     and with no shell access inside a serverless function, the exact
+//     cause (dependency bundling? binary download? missing system lib?)
+//     was never confirmed.
+//   - html2canvas, rendering the PDF entirely in the visitor's browser:
+//     dropped whole sections of content and mis-rendered overlays, because
+//     it re-implements CSS rendering instead of using a real browser.
+// PDFShift runs actual headless-browser infrastructure as its product, so
+// it reproduces the exact same print rendering (`use_print: true` below)
+// that was already verified pixel-correct with Puppeteer locally, without
+// this function needing to launch or ship a browser itself.
 //
-// It reuses a warm headless-browser instance across invocations when the
-// function container is reused (kept in module scope), the same way a
-// long-lived script would, since spinning up Chromium is the slow part.
+// Requires a Netlify environment variable, set in the Netlify UI under
+// Site configuration -> Environment variables:
+//   PDFSHIFT_API_KEY - the API key from your PDFShift account (Account /
+//   API Keys in the PDFShift dashboard)
 //
-// It renders the SAME page the site already serves, at
-// /index.html?result=<dom>-<comp>&rank=<comma-separated-roles> — the exact
-// mechanism used throughout local testing this whole project — so the
-// output is guaranteed to match what's been verified in preview, and is
-// no longer at the mercy of whatever print settings a visitor's browser
-// happens to have (which is what caused the squashed-cover-page bug: a
-// real browser's native print pipeline evaluates some of this site's
-// responsive CSS differently than expected, and only headless server-side
-// rendering avoids that entirely).
-//
-// Uses @sparticuz/chromium-min rather than the full @sparticuz/chromium:
-// the full package bundles the Chromium binary (~50MB+ compressed) directly
-// into the function's deploy zip, which sits right at (or over) Netlify/
-// Lambda's function size limit. The "-min" package ships no binary at all —
-// instead, chromium.executablePath(url) downloads the matching prebuilt
-// Chromium tarball from Sparticuz's GitHub release the first time a given
-// function container runs, caches it in /tmp, and reuses it for every
-// subsequent warm invocation on that same container. Trade-off: a cold
-// start now includes a ~70MB one-time download (network-dependent, adds a
-// few seconds) instead of a bigger deploy artifact — this is the version
-// Ліна asked to try first, given the deploy-size risk of the full package.
-// CHROMIUM_PACK_URL's version must always match the @sparticuz/chromium-min
-// version pinned in package.json, and targets the x64 Lambda architecture
-// (Netlify Functions run on x86_64, not arm64).
-
-import chromium from "@sparticuz/chromium-min";
-import puppeteer from "puppeteer-core";
-
-const CHROMIUM_PACK_URL =
-  "https://github.com/Sparticuz/chromium/releases/download/v153.0.0/chromium-v153.0.0-pack.x64.tar";
+// Netlify Functions v2 (ESM): exports a default function taking a standard
+// Request and returning a standard Response, which streams the binary PDF
+// straight back (no 6MB base64-JSON cap like v1/CommonJS functions have).
 
 const ROLES = ["architect", "craft", "friend", "guide", "method", "provoker", "scout"];
-
-let browserPromise = null;
-function getBrowser() {
-  if (!browserPromise) {
-    browserPromise = (async () => {
-      const executablePath = await chromium.executablePath(CHROMIUM_PACK_URL);
-      return puppeteer.launch({
-        args: chromium.args,
-        defaultViewport: chromium.defaultViewport,
-        executablePath,
-        headless: chromium.headless,
-      });
-    })();
-  }
-  return browserPromise;
-}
 
 function isValidRole(r) {
   return ROLES.includes(r);
@@ -86,32 +52,39 @@ export default async (req, context) => {
     return new Response("Invalid result/rank parameters", { status: 400 });
   }
 
-  let page;
+  const apiKey = process.env.PDFSHIFT_API_KEY;
+  if (!apiKey) {
+    console.error("generate-pdf: missing PDFSHIFT_API_KEY environment variable");
+    return new Response("PDF generation is not configured", { status: 500 });
+  }
+
+  // Same page the old Puppeteer pipeline rendered, with the same query
+  // params the site already uses - PDFShift just needs a URL it can load.
+  const pageUrl = `${url.origin}/index.html?result=${encodeURIComponent(result)}&rank=${encodeURIComponent(rank)}`;
+
   try {
-    const browser = await getBrowser();
-    page = await browser.newPage();
+    const pdfshiftRes = await fetch("https://api.pdfshift.io/v3/convert/pdf", {
+      method: "POST",
+      headers: {
+        "X-API-Key": apiKey,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        source: pageUrl,
+        format: "A4",
+        use_print: true, // apply the site's @media print rules, not the screen ones
+        margin: { top: "25mm", bottom: "25mm", left: "20mm", right: "20mm" },
+        timeout: 25,
+      }),
+    });
 
-    const pageUrl = `${url.origin}/index.html?result=${encodeURIComponent(result)}&rank=${encodeURIComponent(rank)}`;
-    await page.goto(pageUrl, { waitUntil: "networkidle0", timeout: 25000 });
-    await new Promise((r) => setTimeout(r, 900));
-
-    try {
-      await page.waitForFunction(
-        "Array.from(document.querySelectorAll('.notionResultPage img')).every(img => img.complete && img.naturalWidth > 0)",
-        { timeout: 8000 }
-      );
-    } catch (e) {
-      // proceed anyway rather than fail the whole download over one slow image
+    if (!pdfshiftRes.ok) {
+      const errText = await pdfshiftRes.text().catch(() => "");
+      console.error("generate-pdf: PDFShift error", pdfshiftRes.status, errText.slice(0, 500));
+      return new Response("PDF generation failed", { status: 502 });
     }
 
-    await page.emulateMediaType("print");
-    await new Promise((r) => setTimeout(r, 800));
-
-    const pdfBuffer = await page.pdf({
-      format: "A4",
-      margin: { top: "25mm", bottom: "25mm", left: "20mm", right: "20mm" },
-      printBackground: true,
-    });
+    const pdfBuffer = await pdfshiftRes.arrayBuffer();
 
     return new Response(pdfBuffer, {
       status: 200,
@@ -123,11 +96,5 @@ export default async (req, context) => {
   } catch (err) {
     console.error("generate-pdf failed:", err);
     return new Response("PDF generation failed", { status: 500 });
-  } finally {
-    if (page) {
-      try {
-        await page.close();
-      } catch (e) {}
-    }
   }
 };
