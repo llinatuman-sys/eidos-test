@@ -74,7 +74,17 @@ export default async (req, context) => {
         format: "A4",
         use_print: true, // apply the site's @media print rules, not the screen ones
         margin: { top: "25mm", bottom: "25mm", left: "20mm", right: "20mm" },
-        timeout: 25,
+        // The result page is long and image-heavy (12 printed pages), so
+        // PDFShift's own page-render sometimes takes 20+ seconds - confirmed
+        // by testing the live endpoint directly: one run finished in ~10.5s,
+        // another in ~21s, both with a valid PDF. 25s was cutting that off
+        // mid-render on the slower runs, which is what caused the
+        // intermittent "Не вдалося згенерувати PDF" failures - PDFShift
+        // itself works fine, it just needed more time. Netlify's own
+        // synchronous function limit is 60s, so 45s here leaves headroom for
+        // the rest of this function (the PDFShift call itself, plus
+        // streaming the PDF back) to finish inside that budget.
+        timeout: 45,
       }),
     });
 
