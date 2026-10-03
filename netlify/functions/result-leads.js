@@ -19,6 +19,7 @@ exports.handler = async (event) => {
 
     const record = {
       email: data.email,
+      telegram: data.telegram,
       primaryRole: data.primaryRole,
       secondaryRole: data.secondaryRole,
       resultUrl: data.resultUrl,
@@ -27,17 +28,47 @@ exports.handler = async (event) => {
     console.log("EIDOS result lead:", JSON.stringify(record));
 
     try {
+      // Telegram is appended as a NEW last column so existing columns keep
+      // their position. Add a "Telegram" header in the next free column of
+      // the Leads tab in the Sheet - the Apps Script just writes whatever
+      // array it receives as a new row, so no script change should be
+      // needed, but worth a quick test submission to confirm.
       await appendRow("Leads", [
         record.at,
         record.email || "",
         record.primaryRole || "",
         record.secondaryRole || "",
         record.resultUrl || "",
+        record.telegram || "",
       ]);
     } catch (sheetErr) {
       // Don't fail the request just because the sheet write failed —
       // log it so it's visible in the Netlify function logs.
       console.error("EIDOS lead sheet write failed:", sheetErr.message);
+    }
+
+    try {
+      // Kick off the background function that generates this visitor's PDF
+      // and pushes it to Lina's Telegram. It's a Netlify "background
+      // function" — this fetch resolves almost instantly (a 202, work
+      // keeps running after), so awaiting it doesn't meaningfully delay the
+      // response below. Wrapped in try/catch same as the sheet write:
+      // never block unlocking the visitor's result on this.
+      const origin = process.env.URL || process.env.DEPLOY_PRIME_URL || "";
+      await fetch(`${origin}/.netlify/functions/notify-lead-pdf-background`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: record.email,
+          telegram: record.telegram,
+          primaryRole: data.primaryRole,
+          secondaryRole: data.secondaryRole,
+          ranking: data.ranking,
+          resultUrl: data.resultUrl,
+        }),
+      });
+    } catch (notifyErr) {
+      console.error("EIDOS notify-lead-pdf trigger failed:", notifyErr.message);
     }
 
     return { statusCode: 200, headers: {"Content-Type":"application/json"}, body: JSON.stringify({ ok: true }) };
