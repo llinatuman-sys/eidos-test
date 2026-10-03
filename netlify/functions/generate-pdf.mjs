@@ -78,20 +78,35 @@ export default async (req, context) => {
         // PDFShift's own page-render sometimes takes 20+ seconds - confirmed
         // by testing the live endpoint directly: one run finished in ~10.5s,
         // another in ~21s, both with a valid PDF. 25s was cutting that off
-        // mid-render on the slower runs, which is what caused the
-        // intermittent "Не вдалося згенерувати PDF" failures - PDFShift
-        // itself works fine, it just needed more time. Netlify's own
-        // synchronous function limit is 60s, so 45s here leaves headroom for
-        // the rest of this function (the PDFShift call itself, plus
-        // streaming the PDF back) to finish inside that budget.
-        timeout: 45,
+        // mid-render on the slower runs, which caused intermittent
+        // "Не вдалося згенерувати PDF" failures.
+        //
+        // 30 is the max this field accepts on our PDFShift plan - a value
+        // above that is rejected outright with a 400 ("You cannot set a
+        // timeout value higher than 30s"), confirmed from the Netlify
+        // function log on 2026-10-03. An earlier version of this fix set it
+        // to 45, which looked safe against Netlify's own 60s function limit
+        // but silently broke every single PDF generation (every request hit
+        // that 400, not just the slow ones). 30 is both the plan's ceiling
+        // and comfortably above the ~21s slow case observed above.
+        timeout: 30,
       }),
     });
 
     if (!pdfshiftRes.ok) {
       const errText = await pdfshiftRes.text().catch(() => "");
       console.error("generate-pdf: PDFShift error", pdfshiftRes.status, errText.slice(0, 500));
-      return new Response("PDF generation failed", { status: 502 });
+      // Temporary: include PDFShift's own error text in the response body (not
+      // just a generic message) so the real cause (bad/expired key, exhausted
+      // credits, etc.) can be seen directly by calling this endpoint, without
+      // needing to open the Netlify function log. The site's own "Завантажити
+      // PDF" button still only ever shows the visitor the generic
+      // "Не вдалося згенерувати PDF" alert - it doesn't read this body - so
+      // this is safe to leave in.
+      return new Response(
+        `PDF generation failed (PDFShift ${pdfshiftRes.status}): ${errText.slice(0, 300)}`,
+        { status: 502 }
+      );
     }
 
     const pdfBuffer = await pdfshiftRes.arrayBuffer();
