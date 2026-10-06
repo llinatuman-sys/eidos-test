@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>EIDOS — моя карта</title>
+<style>
+  @font-face{font-family:Montserrat;font-style:normal;font-display:block;font-weight:400 700;src:url(assets/montserrat-cyrillic-500-normal-T0SG181k.woff2) format("woff2");unicode-range:U+301,U+400-45F,U+490-491,U+4B0-4B1,U+2116}
+  @font-face{font-family:Montserrat;font-style:normal;font-display:block;font-weight:400 700;src:url(assets/montserrat-latin-500-normal-DRFEGfly.woff2) format("woff2")}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1920px;overflow:hidden;background:#0b0908}
+  body{font-family:Montserrat,Arial,sans-serif;color:#f5f1e9}
+
+  /*
+    Кадр сторіс 1080x1920. Сітка: поля 48px, крок відступів 8px (8/16/24/32).
+    Інтерфейс Instagram перекриває верхні ~240px і нижні ~270px —
+    там лише фон і підпис сайту; весь зміст — у безпечній зоні.
+  */
+  .frame{position:relative;width:1080px;height:1920px;overflow:hidden;background:#0b0908}
+  /* Фірмовий фон сторінки результату (зала музею) — ледь видно під темним шаром */
+  /* Фон: зала сильно розмита (без ліхтариків і деталей), чітким лишається
+     тільки натовп унизу — ніби люди дивляться на картки */
+  .bg{position:absolute;inset:-60px;background:url(museum-crowd-mobile-v2.webp) 50% 0/cover no-repeat;
+    filter:blur(28px) brightness(.75)}
+  .crowd{position:absolute;inset:0;background:url(museum-crowd-mobile-v2.webp) 50% 0/cover no-repeat;
+    -webkit-mask-image:linear-gradient(180deg,transparent 60%,#000 80%);mask-image:linear-gradient(180deg,transparent 60%,#000 80%);filter:brightness(1.2) contrast(1.1);transform:translateY(110px) scale(1.12);transform-origin:50% 100%}
+  .shade{position:absolute;inset:0;
+    background:linear-gradient(180deg,#080706f2 0%,#080706d9 22%,#080706a6 48%,#0807068c 68%,#08070626 86%,#08070633 100%)}
+
+  .safe{position:absolute;left:48px;right:48px;top:240px;bottom:270px;display:flex;flex-direction:column;justify-content:center}
+
+  .head{text-shadow:0 0 18px #000,0 0 6px #000;text-align:center;margin-bottom:var(--gapHead,32px)}
+  .logo{font-size:30px;letter-spacing:.34em;padding-left:.34em;margin-bottom:14px}
+  .eyebrow{color:#c9bfb3;letter-spacing:.14em;text-transform:uppercase;font-size:17px}
+
+  .card{background:#0d0b098c;border:1px solid #ffffff1c;border-radius:24px}
+  /* Під основним текстом фон майже повністю затемнений і розмитий, щоб не заважав читати;
+     музей лишається видно навколо карток, зверху і знизу */
+  .card.role{background:#0b0908e6;backdrop-filter:blur(10px)}
+  .card.ranking{background:#0b0908cc;backdrop-filter:blur(8px)}
+  .label{display:flex;align-items:center;gap:10px;color:#f5f1e9a6;letter-spacing:.14em;text-transform:uppercase;font-size:15px;line-height:1}
+  .label:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--role);flex:none}
+
+  /* Кожна роль — одна картка: підпис, картинка + за чим приходить аудиторія, нижче опис */
+  .roles{display:flex;flex-direction:column;gap:var(--gapRoles,16px)}
+  .role{padding:var(--pad,24px) var(--pad,24px) calc(var(--pad,24px) + 4px);border-color:color-mix(in srgb,var(--role) 30%,#ffffff10)}
+  .role>.label{margin:2px 0 16px 2px;font-size:16px}
+  .rhead{display:grid;grid-template-columns:var(--imgW,360px) 1fr;gap:24px;align-items:center;
+    padding-bottom:var(--headGap,20px);border-bottom:1px solid #ffffff14}
+  .roleImg{width:100%;aspect-ratio:2.5;object-fit:cover;border-radius:12px;display:block}
+  .value{padding:2px 0 2px 18px;border-left:3px solid var(--role);color:#f5f1e9;font-size:var(--fsV,27px);line-height:1.38}
+  .desc{margin-top:var(--headGap,20px);padding:0 4px;color:#d8d1c8;font-size:var(--fs,30px);line-height:1.43}
+
+  /* 3. Градація — як на сайті */
+  .ranking{margin-top:var(--gapSec,24px);padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .rank{color:#9e968d;background:#0d0b09a6;border:1px solid #ffffff10;border-radius:14px;padding:0 20px;height:var(--rankH,64px);display:flex;align-items:center;gap:14px;min-width:0}
+  .rank.leading{border-color:color-mix(in srgb,var(--rank) 42%,transparent);background:color-mix(in srgb,var(--rank) 10%,#0d0b09);color:#f5f0e8}
+  .num{color:#6f6861;letter-spacing:.08em;font-size:14px;flex:none}
+  .rank.leading .num{color:var(--rank)}
+  .rbody{flex:1;display:flex;flex-direction:column;gap:9px;min-width:0}
+  .rank b{font-weight:inherit;font-size:22px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .track{background:#ffffff12;border-radius:999px;height:4px;overflow:hidden}
+  .track i{display:block;height:100%;border-radius:inherit;background:var(--progress);box-shadow:0 0 10px color-mix(in srgb,var(--progress) 45%,transparent)}
+
+  .foot{position:absolute;left:0;right:0;top:1676px;text-align:center;color:#a39a90;font-size:20px;letter-spacing:.08em}
+
+  /* ?guides=1 — показує зони, які перекриває інтерфейс Instagram (тільки для перевірки) */
+  .guide{display:none;position:absolute;left:0;right:0;background:#ff00004d;outline:2px dashed #ff4d4d}
+  html.guides .guide{display:block}
+</style>
+</head>
+<body>
+  <main class="frame" id="frame">
+    <div class="bg"></div><div class="crowd"></div><div class="shade"></div>
+    <div class="safe" id="safe">
+      <header class="head">
+        <div class="logo">EIDOS</div>
+        <p class="eyebrow">Моя експертна комбінація за&nbsp;типологією Ліни Туман</p>
+      </header>
+      <section class="roles" id="roles"></section>
+      <section class="ranking card" id="ranking"></section>
+    </div>
+    <footer class="foot">linatuman.com</footer>
+    <div class="guide" style="top:0;height:240px"></div>
+    <div class="guide" style="bottom:0;height:270px"></div>
+  </main>
+  <script>
+    // Ті самі дані, що й на сторінці результату (page-*.js: об'єкти D, k, j, L)
+    var RAINBOW = ["#79B7DC","#F27A4A","#D7B65A","#78A58B","#9B86C3","#55A7A4","#C96F7B"];
+    var WIDTHS = [100,84,68,52,38,26,16];
+
+    var ROLES = {
+      architect: { name: "Архітектор", color: "#A6CBE6", img: "arkhitektor",
+        primary: "Ти бачиш причинно-наслідкові зв’язки та оцінюєш системи цілісно. Ти не мислиш рамками однієї ніші: щоб зробити висновок, спочатку досліджуєш історичний, економічний і культурний контекст.",
+        effect: "бачиш причинно-наслідкові зв’язки та оцінюєш системи цілісно",
+        value: "Ти можеш дати розуміння того, що відбувається в розрізі десятиліть. У моменти криз та відбудови це робить тебе незамінною людиною." },
+      craft: { name: "Ремісник", color: "#FFAD8A", img: "remisnyk",
+        primary: "У тебе впізнаваний почерк. Ти отримуєш задоволення від процесу роботи, б’єш в одну точку і стаєш найкращим у цьому.",
+        effect: "б’єш в одну точку, доки не стаєш найкращим у цьому",
+        value: "Аудиторія приходить до тебе, щоб отримати роботу, рівень якої вона не зустрічала ніде." },
+      friend: { name: "Друг", color: "#BBD8ED", img: "druh",
+        primary: "Ти своя людина в інфопросторі, де всі грають експертів. Ти вмієш у деталях розповісти про свій досвід так, що це притягує людей і створює коло довіри, де вони можуть відкритися.",
+        effect: "розповідаєш про свій досвід так, що це притягує людей і створює коло довіри",
+        value: "До тебе приходять, щоб не відчувати себе самотніми у своєму переживанні." },
+      guide: { name: "Провідник", color: "#97B4CA", img: "providnyk",
+        primary: "Ти можеш бути поруч із людиною, чия картина світу руйнується, не відштовхуючи її й не пришвидшуючи процес склеювання. Твоя присутність змінює простір, у якому відбувається трансформація.",
+        effect: "можеш бути поруч із людиною, чия картина світу руйнується, не відштовхуючи її й не пришвидшуючи процес",
+        value: "Аудиторія приходить до тебе за рукою, за яку можна триматись, поки вони в пошуку власної опори." },
+      method: { name: "Методолог", color: "#8DBCE0", img: "metodoloh",
+        primary: "Ти бачиш, як влаштовані речі, і пояснюєш це так зрозуміло, що інші починають говорити твоїми словами.",
+        effect: "бачиш, як влаштовані речі, і пояснюєш це так зрозуміло, що інші починають говорити твоїми словами",
+        value: "Аудиторія приходить до тебе впорядкувати думки." },
+      provoker: { name: "Провокатор", color: "#FF7847", img: "provokator",
+        primary: "Ти бачиш межу і регулярно її переходиш. Не сказане для тебе — лицемірство, а це отруює більше, ніж тиск мас чи можливий конфлікт.",
+        effect: "бачиш межу і регулярно її переходиш. Не сказане для тебе — лицемірство, а це отруює більше, ніж тиск мас чи можливий конфлікт",
+        value: "Твоя правда вголос дає аудиторії дозвіл на власну." },
+      scout: { name: "Розвідник", color: "#78ABD2", img: "rozvidnyk",
+        primary: "Ти раніше за інших помічаєш зміни й розумієш, куди ми всі рухаємося. Ти в постійному пошуку, терпимо ставишся до помилок, живеш і мислиш майбутнім.",
+        effect: "раніше за інших помічаєш зміни й розумієш, куди ми всі рухаємося",
+        value: "Ти економиш аудиторії місяці і роки тим, що показуєш, куди дивитись. І дозволяєш їм бути першими, хто збере вершки." }
+    };
+
+
+    // Короткі слова не лишаються в кінці рядка — як на сайті
+    var SHORT = /(^|[\s(«—])((?:[А-ЯІЇЄҐа-яіїєґ’']{1,2})|для|від|без|під|над|про|при|щоб|або|але|та|що|чи|це|не)\s/gi;
+    function typo(s){ return s.replace(SHORT,"$1$2 ").replace(SHORT,"$1$2 ").replace(/\s—/g," —"); }
+
+    var params = new URLSearchParams(window.location.search);
+    if (params.get("guides")) document.documentElement.classList.add("guides");
+    var parts = (params.get("result") || "").split("-");
+    var primaryKey = parts[0], secondaryKey = parts[1];
+    var rank = (params.get("rank") || "").split(",").filter(Boolean);
+
+    var html = "";
+    [[primaryKey, "Домінантна роль", false], [secondaryKey, "Роль, яка тебе доповнює", true]].forEach(function (r) {
+      var key = r[0], role = ROLES[key];
+      if (!role) return;
+      // та сама логіка, що на сторінці результату
+      var desc = r[2] && key !== "provoker" ? "Завдяки цій ролі ти " + role.effect + "." : role.primary;
+      html += '<div class="card role" style="--role:' + role.color + '"><p class="label">' + r[1] + '</p>' +
+        '<div class="rhead"><img class="roleImg" src="result-role-images/' + role.img + '.png" alt="' + role.name + '">' +
+        '<p class="value">' + typo(role.value) + '</p></div>' +
+        '<p class="desc">' + typo(desc) + '</p></div>';
+    });
+    document.getElementById("roles").innerHTML = html;
+
+    var rankingEl = document.getElementById("ranking");
+    rank.forEach(function (key, i) {
+      var role = ROLES[key];
+      if (!role) return;
+      var div = document.createElement("div");
+      div.className = "rank" + (i < 2 ? " leading" : "");
+      div.style.setProperty("--rank", role.color);
+      div.style.setProperty("--progress", RAINBOW[i % RAINBOW.length]);
+      div.innerHTML = '<span class="num">' + String(i + 1).padStart(2, "0") + '</span>' +
+        '<span class="rbody"><b>' + role.name + '</b><span class="track"><i style="width:' + (WIDTHS[i] || 10) + '%"></i></span></span>';
+      rankingEl.appendChild(div);
+    });
+
+    // Усе має поміститися в безпечну зону. Починаємо з найкомфортніших розмірів;
+    // для довгих комбінацій крок за кроком стискаємо відступи, потім шрифт.
+    function fit() {
+      var frame = document.getElementById("frame"), safe = document.getElementById("safe");
+      var steps = [["--fs","29px"],["--fs","28px"],["--gapHead","24px"],["--headGap","16px"],["--rankH","58px"],
+                   ["--fsV","26px"],["--fs","27px"],["--pad","20px"],["--gapSec","16px"],["--fs","26px"],["--fsV","25px"],
+                   ["--fs","25px"],["--fsV","24px"],["--fs","24px"]];
+      function overflows(){
+        var a = safe.firstElementChild.getBoundingClientRect(), b = safe.lastElementChild.getBoundingClientRect();
+        return b.bottom - a.top > safe.clientHeight + 0.5;
+      }
+      steps.forEach(function (st) { frame.style.removeProperty(st[0]); });
+      for (var s = 0; s < steps.length && overflows(); s++) frame.style.setProperty(steps[s][0], steps[s][1]);
+      document.documentElement.setAttribute("data-fit", s);
+    }
+    // PDFShift робить знімок, коли shareCardReady() поверне true:
+    // після завантаження шрифтів, картинок і фінального підгону.
+    var ready = false;
+    window.shareCardReady = function () { return ready; };
+    fit();
+    var fontsLoaded = document.fonts
+      ? Promise.all([document.fonts.load('400 28px Montserrat', 'Ти'), document.fonts.load('400 28px Montserrat', 'EIDOS')])
+          .then(function () { return document.fonts.ready; })
+      : Promise.resolve();
+    var bgLoaded = new Promise(function (r) { var im = new Image(); im.onload = im.onerror = r; im.src = "museum-crowd-mobile-v2.webp"; });
+    var imagesLoaded = Promise.all(Array.prototype.map.call(document.images, function (img) {
+      return img.complete ? null : new Promise(function (r) { img.onload = img.onerror = r; });
+    }));
+    Promise.all([fontsLoaded, imagesLoaded, bgLoaded]).catch(function () {}).then(function () {
+      fit();
+      requestAnimationFrame(function () { fit(); ready = true; });
+    });
+  </script>
+</body>
+</html>

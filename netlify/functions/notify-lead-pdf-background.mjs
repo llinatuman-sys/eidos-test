@@ -21,6 +21,7 @@
 //     @userinfobot (message it, it replies with your Id instantly)
 
 import { isValidRole, isValidRank, generatePdfBuffer } from "./_pdf.mjs";
+import { generateShareCardBuffer } from "./_sharecard.mjs";
 
 export const config = { background: true };
 
@@ -50,7 +51,6 @@ export default async (req) => {
     }
 
     const origin = process.env.URL || new URL(req.url).origin;
-    const pdfBuffer = await generatePdfBuffer({ primaryRole, secondaryRole, rank, origin });
 
     const caption = [
       `Новий лід EIDOS`,
@@ -62,23 +62,53 @@ export default async (req) => {
       .filter(Boolean)
       .join("\n");
 
-    const form = new FormData();
-    form.append("chat_id", chatId);
-    form.append("caption", caption);
-    form.append(
-      "document",
-      new Blob([pdfBuffer], { type: "application/pdf" }),
-      `eidos-${primaryRole}-${secondaryRole}.pdf`
-    );
+    // PDF and share-card generation are independent - if one fails (e.g. a
+    // PDFShift hiccup), the other should still reach Telegram rather than
+    // the whole notification silently disappearing.
+    const [pdfResult, cardResult] = await Promise.allSettled([
+      generatePdfBuffer({ primaryRole, secondaryRole, rank, origin }),
+      generateShareCardBuffer({ primaryRole, secondaryRole, rank, origin }),
+    ]);
 
-    const tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendDocument`, {
-      method: "POST",
-      body: form,
-    });
+    if (pdfResult.status === "fulfilled") {
+      const form = new FormData();
+      form.append("chat_id", chatId);
+      form.append("caption", caption);
+      form.append(
+        "document",
+        new Blob([pdfResult.value], { type: "application/pdf" }),
+        `eidos-${primaryRole}-${secondaryRole}.pdf`
+      );
+      const tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendDocument`, {
+        method: "POST",
+        body: form,
+      });
+      if (!tgRes.ok) {
+        const errText = await tgRes.text().catch(() => "");
+        console.error("notify-lead-pdf: Telegram sendDocument failed", tgRes.status, errText.slice(0, 300));
+      }
+    } else {
+      console.error("notify-lead-pdf: PDF generation failed", pdfResult.reason);
+    }
 
-    if (!tgRes.ok) {
-      const errText = await tgRes.text().catch(() => "");
-      console.error("notify-lead-pdf: Telegram sendDocument failed", tgRes.status, errText.slice(0, 300));
+    if (cardResult.status === "fulfilled") {
+      const form = new FormData();
+      form.append("chat_id", chatId);
+      form.append(
+        "photo",
+        new Blob([cardResult.value], { type: "image/png" }),
+        `eidos-${primaryRole}-${secondaryRole}-card.png`
+      );
+      const tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+        method: "POST",
+        body: form,
+      });
+      if (!tgRes.ok) {
+        const errText = await tgRes.text().catch(() => "");
+        console.error("notify-lead-pdf: Telegram sendPhoto failed", tgRes.status, errText.slice(0, 300));
+      }
+    } else {
+      console.error("notify-lead-pdf: share-card generation failed", cardResult.reason);
     }
   } catch (err) {
     console.error("notify-lead-pdf-background failed:", err);

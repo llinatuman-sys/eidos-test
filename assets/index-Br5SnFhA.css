@@ -12,4 +12,6 @@
 .notionResultPage .resultOverview{background:#0d0b09!important}
 
 .notionResultPage .sourceMedia img,.notionResultPage .sourceMediaSmall img,.notionResultPage .resultRoleCardImage{border-radius:0!important}
-.pdfSpinner{display:inline-block;animation:eidosPdfSpin 1s linear infinite}@keyframes eidosPdfSpin{to{transform:rotate(360deg)}}@media print{.pdfSpinner{display:none!important}}
+.pdfSpinner{display:inline-block;animation:eidosPdfSpin 1s linear infinite}@keyframes eidosPdfSpin{to{transform:rotate(360deg)}}@media print{.pdfSpinner{display:none!important}}.resultDownloadReady a.resultDownloadTelegramLink{color:#0d0b09;cursor:pointer;background:#f5f1e9;border:0;border-radius:999px;justify-content:center;align-items:center;gap:14px;min-height:60px;padding:13px 20px;font-family:Montserrat,Arial,sans-serif;font-size:14px;font-weight:700;display:inline-flex;text-decoration:none;width:100%;box-sizing:border-box}
+.resultDownloadReady a.resultDownloadTelegramLink svg{width:18px;height:18px}
+.resultDownloadReady a.resultDownloadTelegramLink:hover{background:#fff}
