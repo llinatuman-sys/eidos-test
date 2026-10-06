@@ -31,8 +31,9 @@
   .head{text-shadow:0 0 18px #000,0 0 6px #000;text-align:center;margin-bottom:var(--gapHead,52px)}
   /* Як на першій сторінці тесту: εἶδος грецькою, малими, шрифт як Arial.
      Вбудовано контурами (SVG), щоб літера ἶ з наголосом виглядала однаково на будь-якому сервері */
-  .logo{display:block;height:32px;width:auto;margin:0 auto 18px;color:#f5f1e9;filter:drop-shadow(0 0 12px #000)}
-  .eyebrow{color:#c9bfb3;letter-spacing:.14em;text-transform:uppercase;font-size:16px}
+  /* εἶδος і рядок про AI — ледь видимі, як водяний знак (40% непрозорості) */
+  .logo{display:block;height:32px;width:auto;margin:0 auto 18px;color:#f5f1e9;opacity:.4}
+  .eyebrow{color:#f5f1e9;opacity:.4;text-shadow:none;letter-spacing:.14em;text-transform:uppercase;font-size:16px}
   .title{margin-top:22px;color:#f5f1e9;letter-spacing:.1em;text-transform:uppercase;font-size:34px;line-height:1.15}
 
   .card{background:#0d0b098c;border:1px solid #ffffff1c;border-radius:24px}
@@ -105,12 +106,12 @@
 
     var ROLES = {
       architect: { name: "Архітектор", color: "#A6CBE6", img: "arkhitektor",
-        motive: "Архітектор відчуває світ як набір поламаних механізмів. Під будь-яким хаосом він шукає логічну помилку, щоб виправити її й подивитися, як система запрацює.",
+        motive: "Архітектор будує структури й методології, які переживуть його самого. Для нього будь-яка криза — лише прогнозований етап циклу, який він уже врахував. Тому люди тягнуться до нього як до єдиної стабільної точки в океані невизначеності.",
         primary: "Ти бачиш причинно-наслідкові зв’язки та оцінюєш системи цілісно. Ти не мислиш рамками однієї ніші: щоб зробити висновок, спочатку досліджуєш історичний, економічний і культурний контекст.",
         effect: "бачиш причинно-наслідкові зв’язки та оцінюєш системи цілісно",
         value: "Ти можеш дати розуміння того, що відбувається в розрізі десятиліть. У моменти криз та відбудови це робить тебе незамінною людиною." },
       craft: { name: "Ремісник", color: "#FFAD8A", img: "remisnyk",
-        motive: "Ремісник біжить за власним ідеалом. Він отримує майже фізичне задоволення від того, що шов рівний, смак збалансований, а кадр виставлений до міліметра.",
+        motive: "Ремісник — майстер своєї справи з впізнаваним почерком. До нього приходять за роботою, рівень якої не зустрічали ніде.",
         primary: "У тебе впізнаваний почерк. Ти отримуєш задоволення від процесу роботи, б’єш в одну точку і стаєш найкращим у цьому.",
         effect: "б’єш в одну точку, доки не стаєш найкращим у цьому",
         value: "Аудиторія приходить до тебе, щоб отримати роботу, рівень якої вона не зустрічала ніде." },
@@ -157,7 +158,7 @@
       var role = ROLES[r[0]];
       if (!role) return;
       html += '<div class="card role" style="--role:' + role.color + '"><p class="label">' + r[1] + '</p>' +
-        '<div class="rrow"><img class="roleImg" src="result-role-images/' + role.img + '.png" alt="' + role.name + '">' +
+        '<div class="rrow"><img class="roleImg" src="result-role-images/' + role.img + '.webp" alt="' + role.name + '">' +
         '<p class="motive">' + typo(role.motive) + '</p></div></div>';
     });
     document.getElementById("roles").innerHTML = html;
@@ -170,8 +171,7 @@
       div.className = "rank" + (i < 2 ? " leading" : "");
       div.style.setProperty("--rank", role.color);
       div.style.setProperty("--progress", RAINBOW[i % RAINBOW.length]);
-      div.innerHTML = '<span class="num">' + String(i + 1).padStart(2, "0") + '</span>' +
-        '<span class="rbody"><b>' + role.name + '</b><span class="track"><i style="width:' + (WIDTHS[i] || 10) + '%"></i></span></span>';
+      div.innerHTML = '<span class="rbody"><b>' + role.name + '</b><span class="track"><i style="width:' + (WIDTHS[i] || 10) + '%"></i></span></span>';
       rankingEl.appendChild(div);
     });
 
