@@ -27,13 +27,18 @@ exports.handler = async (event) => {
     };
     console.log("EIDOS result lead:", JSON.stringify(record));
 
+    // Lead number for the Telegram notification = the row this lead landed
+    // on in the Leads tab, minus the header row. Needs the Apps Script to
+    // return {row: ...} (see the comment in _sheets.js); if it doesn't, the
+    // notification simply goes out without a number.
+    let leadNumber = null;
     try {
       // Telegram is appended as a NEW last column so existing columns keep
       // their position. Add a "Telegram" header in the next free column of
       // the Leads tab in the Sheet - the Apps Script just writes whatever
       // array it receives as a new row, so no script change should be
       // needed, but worth a quick test submission to confirm.
-      await appendRow("Leads", [
+      const sheetRes = await appendRow("Leads", [
         record.at,
         record.email || "",
         record.primaryRole || "",
@@ -41,6 +46,8 @@ exports.handler = async (event) => {
         record.resultUrl || "",
         record.telegram || "",
       ]);
+      const row = Number(sheetRes && sheetRes.row);
+      if (Number.isFinite(row) && row > 1) leadNumber = row - 1;
     } catch (sheetErr) {
       // Don't fail the request just because the sheet write failed —
       // log it so it's visible in the Netlify function logs.
@@ -65,6 +72,7 @@ exports.handler = async (event) => {
           secondaryRole: data.secondaryRole,
           ranking: data.ranking,
           resultUrl: data.resultUrl,
+          leadNumber,
         }),
       });
     } catch (notifyErr) {

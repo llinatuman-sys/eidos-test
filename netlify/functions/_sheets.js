@@ -13,6 +13,11 @@
 // Requires these Netlify environment variables:
 //   APPS_SCRIPT_URL     - the Web App's /exec URL
 //   APPS_SCRIPT_SECRET  - the same secret string used in the Apps Script code
+//
+// The Apps Script should answer with {"ok": true, "row": <row number>} -
+// result-leads.js turns that row into the lead number shown in Telegram
+// ("Лід №42"). An older script that only answers {"ok": true} still works,
+// the Telegram message just comes without a number.
 
 async function appendRow(tabName, values) {
   const url = process.env.APPS_SCRIPT_URL;

@@ -28,9 +28,12 @@
 
   .safe{position:absolute;left:48px;right:48px;top:240px;bottom:270px;display:flex;flex-direction:column;justify-content:center}
 
-  .head{text-shadow:0 0 18px #000,0 0 6px #000;text-align:center;margin-bottom:var(--gapHead,32px)}
-  .logo{font-size:30px;letter-spacing:.34em;padding-left:.34em;margin-bottom:14px}
-  .eyebrow{color:#c9bfb3;letter-spacing:.14em;text-transform:uppercase;font-size:17px}
+  .head{text-shadow:0 0 18px #000,0 0 6px #000;text-align:center;margin-bottom:var(--gapHead,52px)}
+  /* Як на першій сторінці тесту: εἶδος грецькою, малими, шрифт як Arial.
+     Вбудовано контурами (SVG), щоб літера ἶ з наголосом виглядала однаково на будь-якому сервері */
+  .logo{display:block;height:32px;width:auto;margin:0 auto 18px;color:#f5f1e9;filter:drop-shadow(0 0 12px #000)}
+  .eyebrow{color:#c9bfb3;letter-spacing:.14em;text-transform:uppercase;font-size:16px}
+  .title{margin-top:22px;color:#f5f1e9;letter-spacing:.1em;text-transform:uppercase;font-size:34px;line-height:1.15}
 
   .card{background:#0d0b098c;border:1px solid #ffffff1c;border-radius:24px}
   /* Під основним текстом фон майже повністю затемнений і розмитий, щоб не заважав читати;
@@ -40,19 +43,18 @@
   .label{display:flex;align-items:center;gap:10px;color:#f5f1e9a6;letter-spacing:.14em;text-transform:uppercase;font-size:15px;line-height:1}
   .label:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--role);flex:none}
 
-  /* Кожна роль — одна картка: підпис, картинка + за чим приходить аудиторія, нижче опис */
-  .roles{display:flex;flex-direction:column;gap:var(--gapRoles,16px)}
-  .role{padding:var(--pad,24px) var(--pad,24px) calc(var(--pad,24px) + 4px);border-color:color-mix(in srgb,var(--role) 30%,#ffffff10)}
-  .role>.label{margin:2px 0 16px 2px;font-size:16px}
-  .rhead{display:grid;grid-template-columns:var(--imgW,360px) 1fr;gap:24px;align-items:center;
-    padding-bottom:var(--headGap,20px);border-bottom:1px solid #ffffff14}
-  .roleImg{width:100%;aspect-ratio:2.5;object-fit:cover;border-radius:12px;display:block}
-  .value{padding:2px 0 2px 18px;border-left:3px solid var(--role);color:#f5f1e9;font-size:var(--fsV,27px);line-height:1.38}
-  .desc{margin-top:var(--headGap,20px);padding:0 4px;color:#d8d1c8;font-size:var(--fs,30px);line-height:1.43}
+  /* Кожна роль — одна картка: підпис, картинка, поруч 1-2 речення внутрішньої мотивації.
+     Тексту мало — тому більше повітря між блоками. */
+  .roles{display:flex;flex-direction:column;gap:var(--gapRoles,28px)}
+  .role{padding:24px 24px 26px;border-color:color-mix(in srgb,var(--role) 30%,#ffffff10)}
+  .role>.label{margin:2px 0 18px 2px;font-size:16px}
+  .rrow{display:grid;grid-template-columns:var(--imgW,360px) 1fr;gap:26px;align-items:center}
+  .roleImg{width:100%;aspect-ratio:2.5;object-fit:cover;border-radius:14px;display:block}
+  .motive{padding:2px 0 2px 20px;border-left:3px solid var(--role);color:#f2ece3;font-size:var(--fs,27px);line-height:1.42}
 
   /* 3. Градація — як на сайті */
-  .ranking{margin-top:var(--gapSec,24px);padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .rank{color:#9e968d;background:#0d0b09a6;border:1px solid #ffffff10;border-radius:14px;padding:0 20px;height:var(--rankH,64px);display:flex;align-items:center;gap:14px;min-width:0}
+  .ranking{margin-top:var(--gapSec,40px);padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .rank{color:#9e968d;background:#0d0b09a6;border:1px solid #ffffff10;border-radius:14px;padding:0 20px;height:var(--rankH,68px);display:flex;align-items:center;gap:14px;min-width:0}
   .rank.leading{border-color:color-mix(in srgb,var(--rank) 42%,transparent);background:color-mix(in srgb,var(--rank) 10%,#0d0b09);color:#f5f0e8}
   .num{color:#6f6861;letter-spacing:.08em;font-size:14px;flex:none}
   .rank.leading .num{color:var(--rank)}
@@ -61,6 +63,11 @@
   .track{background:#ffffff12;border-radius:999px;height:4px;overflow:hidden}
   .track i{display:block;height:100%;border-radius:inherit;background:var(--progress);box-shadow:0 0 10px color-mix(in srgb,var(--progress) 45%,transparent)}
 
+  /* Зміст повного розбору — як меню, що просвічує крізь фон і тане донизу */
+  .toc{margin-top:var(--gapToc,28px);padding:0 8px;display:grid;grid-template-columns:1fr 1fr;column-gap:24px;
+    color:#f5f1e9;opacity:.42;font-size:20px;letter-spacing:.02em;
+    -webkit-mask-image:linear-gradient(180deg,#000 45%,#0000004d 100%);mask-image:linear-gradient(180deg,#000 45%,#0000004d 100%)}
+  .toc span{padding:12px 0;border-top:1px solid #f5f1e940;white-space:nowrap;text-shadow:0 0 10px #000}
   .foot{position:absolute;left:0;right:0;top:1676px;text-align:center;color:#a39a90;font-size:20px;letter-spacing:.08em}
 
   /* ?guides=1 — показує зони, які перекриває інтерфейс Instagram (тільки для перевірки) */
@@ -73,47 +80,62 @@
     <div class="bg"></div><div class="crowd"></div><div class="shade"></div>
     <div class="safe" id="safe">
       <header class="head">
-        <div class="logo">EIDOS</div>
-        <p class="eyebrow">Моя експертна комбінація за&nbsp;типологією Ліни Туман</p>
+        <svg class="logo" viewBox="0 0 4634 2288" xmlns="http://www.w3.org/2000/svg" aria-label="εἶδος" role="img"><path fill="currentColor" d="M456 1740Q543 1740 626.5 1695.5Q710 1651 769 1579L874 1679Q794 1776 685.0 1825.0Q576 1874 444 1874Q263 1874 166.5 1791.0Q70 1708 70 1559Q70 1449 144.5 1375.0Q219 1301 334 1290V1288Q228 1276 165.5 1208.0Q103 1140 103 1041Q103 911 204.5 831.5Q306 752 471 752Q722 752 847 937L719 1025Q627 886 472 886Q381 886 333.0 928.5Q285 971 285 1045Q285 1136 363.0 1178.5Q441 1221 643 1221V1356Q490 1356 414.0 1375.5Q338 1395 297.5 1438.0Q257 1481 257 1556Q257 1643 310.5 1691.5Q364 1740 456 1740Z M1112 1854Q1082 1822 1066.0 1754.5Q1050 1687 1050 1618V772H1230V1627Q1230 1692 1251.5 1753.0Q1273 1814 1310 1854ZM1312 236Q1270 236 1228.0 221.5Q1186 207 1147.0 189.0Q1108 171 1072.5 156.5Q1037 142 1006 142Q951 142 924.0 168.0Q897 194 888 251H797Q808 154 831.5 104.5Q855 55 896.0 26.5Q937 -2 1000 -2Q1044 -2 1086.5 13.5Q1129 29 1169.0 47.5Q1209 66 1244.5 81.5Q1280 97 1310 97Q1364 97 1389.0 70.5Q1414 44 1422 -12H1514Q1498 126 1448.5 181.0Q1399 236 1312 236ZM1251 280V357Q1251 444 1235.5 499.0Q1220 554 1175 607H1048Q1093 556 1116.0 518.0Q1139 480 1139 445H1052V280Z M2232 1383Q2232 1296 2205.5 1219.5Q2179 1143 2137.5 1077.5Q2096 1012 2012 925Q1833 989 1738.0 1108.0Q1643 1227 1643 1383Q1643 1552 1721.5 1646.5Q1800 1741 1939 1741Q2083 1741 2157.5 1651.0Q2232 1561 2232 1383ZM1975 502 1821 494 2137 818Q2258 942 2310.5 1021.5Q2363 1101 2392.0 1188.5Q2421 1276 2421 1379Q2421 1606 2292.0 1740.0Q2163 1874 1939 1874Q1713 1874 1583.5 1743.0Q1454 1612 1454 1381Q1454 1187 1571.0 1047.5Q1688 908 1919 828L1600 489V370H2333V502Z M3561 1312Q3561 1596 3436.0 1735.0Q3311 1874 3073 1874Q2836 1874 2715.0 1729.5Q2594 1585 2594 1312Q2594 752 3079 752Q3327 752 3444.0 888.5Q3561 1025 3561 1312ZM3372 1312Q3372 1088 3305.5 986.5Q3239 885 3082 885Q2924 885 2853.5 988.5Q2783 1092 2783 1312Q2783 1526 2852.5 1633.5Q2922 1741 3071 1741Q3233 1741 3302.5 1637.0Q3372 1533 3372 1312Z M4229 893Q4147 893 4080.5 954.0Q4014 1015 3969.0 1138.0Q3924 1261 3924 1382Q3924 1511 3988.5 1576.5Q4053 1642 4248 1705L4358 1740Q4571 1810 4571 1975Q4571 2019 4553.0 2073.5Q4535 2128 4488 2207L4362 2151Q4385 2120 4401.0 2079.0Q4417 2038 4417 2010Q4417 1962 4367.0 1929.0Q4317 1896 4154 1852Q3976 1804 3893.0 1747.5Q3810 1691 3771.5 1602.5Q3733 1514 3733 1379Q3733 1268 3772.5 1143.5Q3812 1019 3876.5 932.5Q3941 846 4029.5 799.0Q4118 752 4229 752Q4330 752 4405.0 779.0Q4480 806 4545 874L4429 993Q4334 893 4229 893Z"/></svg>
+        <p class="eyebrow">Fuck AI — this typology was made by Lina&nbsp;Tuman</p>
+        <h1 class="title">Моя експертна комбінація</h1>
       </header>
       <section class="roles" id="roles"></section>
       <section class="ranking card" id="ranking"></section>
+      <!-- Напівпрозорий "зміст" повного розбору: які блоки є у файлі про кожну роль (roles/*.md) -->
+      <nav class="toc" aria-hidden="true">
+        <span>01&nbsp; Внутрішня мотивація</span><span>02&nbsp; Головні ознаки</span>
+        <span>03&nbsp; Прихована сила</span><span>04&nbsp; Перешкоди</span>
+        <span>05&nbsp; Які продукти продавати</span><span>06&nbsp; Для команди і продюсера</span>
+      </nav>
     </div>
     <footer class="foot">linatuman.com</footer>
     <div class="guide" style="top:0;height:240px"></div>
     <div class="guide" style="bottom:0;height:270px"></div>
   </main>
   <script>
-    // Ті самі дані, що й на сторінці результату (page-*.js: об'єкти D, k, j, L)
+    // Ті самі дані, що й на сторінці результату (page-*.js: об'єкти D, k, j, L).
+    // motive — 1-2 речення з блоку «Внутрішня мотивація» (roles/*.md), погоджені з Ліною.
     var RAINBOW = ["#79B7DC","#F27A4A","#D7B65A","#78A58B","#9B86C3","#55A7A4","#C96F7B"];
     var WIDTHS = [100,84,68,52,38,26,16];
 
     var ROLES = {
       architect: { name: "Архітектор", color: "#A6CBE6", img: "arkhitektor",
+        motive: "Архітектор відчуває світ як набір поламаних механізмів. Під будь-яким хаосом він шукає логічну помилку, щоб виправити її й подивитися, як система запрацює.",
         primary: "Ти бачиш причинно-наслідкові зв’язки та оцінюєш системи цілісно. Ти не мислиш рамками однієї ніші: щоб зробити висновок, спочатку досліджуєш історичний, економічний і культурний контекст.",
         effect: "бачиш причинно-наслідкові зв’язки та оцінюєш системи цілісно",
         value: "Ти можеш дати розуміння того, що відбувається в розрізі десятиліть. У моменти криз та відбудови це робить тебе незамінною людиною." },
       craft: { name: "Ремісник", color: "#FFAD8A", img: "remisnyk",
+        motive: "Ремісник біжить за власним ідеалом. Він отримує майже фізичне задоволення від того, що шов рівний, смак збалансований, а кадр виставлений до міліметра.",
         primary: "У тебе впізнаваний почерк. Ти отримуєш задоволення від процесу роботи, б’єш в одну точку і стаєш найкращим у цьому.",
         effect: "б’єш в одну точку, доки не стаєш найкращим у цьому",
         value: "Аудиторія приходить до тебе, щоб отримати роботу, рівень якої вона не зустрічала ніде." },
       friend: { name: "Друг", color: "#BBD8ED", img: "druh",
+        motive: "Друг прагне бути почутим і почути інших, щоб подолати самотність. Чим більше він відкривається, тим сильнішим почувається.",
         primary: "Ти своя людина в інфопросторі, де всі грають експертів. Ти вмієш у деталях розповісти про свій досвід так, що це притягує людей і створює коло довіри, де вони можуть відкритися.",
         effect: "розповідаєш про свій досвід так, що це притягує людей і створює коло довіри",
         value: "До тебе приходять, щоб не відчувати себе самотніми у своєму переживанні." },
       guide: { name: "Провідник", color: "#97B4CA", img: "providnyk",
+        motive: "Провідник — єдина людина на вечірці, яка помітить, що комусь погано, і підійде. Він не рятує і не дає відповідь, а тримає простір, поки людина знаходить свою.",
         primary: "Ти можеш бути поруч із людиною, чия картина світу руйнується, не відштовхуючи її й не пришвидшуючи процес склеювання. Твоя присутність змінює простір, у якому відбувається трансформація.",
         effect: "можеш бути поруч із людиною, чия картина світу руйнується, не відштовхуючи її й не пришвидшуючи процес",
         value: "Аудиторія приходить до тебе за рукою, за яку можна триматись, поки вони в пошуку власної опори." },
       method: { name: "Методолог", color: "#8DBCE0", img: "metodoloh",
+        motive: "Методолог — це такий тривожник з синдромом Бога. Хаос його дратує, тому він дає назви, створює категорії й фрейми, які з часом стають мовою для інших.",
         primary: "Ти бачиш, як влаштовані речі, і пояснюєш це так зрозуміло, що інші починають говорити твоїми словами.",
         effect: "бачиш, як влаштовані речі, і пояснюєш це так зрозуміло, що інші починають говорити твоїми словами",
         value: "Аудиторія приходить до тебе впорядкувати думки." },
       provoker: { name: "Провокатор", color: "#FF7847", img: "provokator",
+        motive: "Для Провокатора мовчання там, де все очевидно, — зрада ідентичності. Він вірить, що те, про що ми мовчимо, керує нами.",
         primary: "Ти бачиш межу і регулярно її переходиш. Не сказане для тебе — лицемірство, а це отруює більше, ніж тиск мас чи можливий конфлікт.",
         effect: "бачиш межу і регулярно її переходиш. Не сказане для тебе — лицемірство, а це отруює більше, ніж тиск мас чи можливий конфлікт",
         value: "Твоя правда вголос дає аудиторії дозвіл на власну." },
       scout: { name: "Розвідник", color: "#78ABD2", img: "rozvidnyk",
+        motive: "Розвідник боїться запізнитися в майбутнє. Його драйв — бути там, де ще нікого немає, і бачити зв’язки, які інші помітять лише через рік.",
         primary: "Ти раніше за інших помічаєш зміни й розумієш, куди ми всі рухаємося. Ти в постійному пошуку, терпимо ставишся до помилок, живеш і мислиш майбутнім.",
         effect: "раніше за інших помічаєш зміни й розумієш, куди ми всі рухаємося",
         value: "Ти економиш аудиторії місяці і роки тим, що показуєш, куди дивитись. І дозволяєш їм бути першими, хто збере вершки." }
@@ -122,7 +144,7 @@
 
     // Короткі слова не лишаються в кінці рядка — як на сайті
     var SHORT = /(^|[\s(«—])((?:[А-ЯІЇЄҐа-яіїєґ’']{1,2})|для|від|без|під|над|про|при|щоб|або|але|та|що|чи|це|не)\s/gi;
-    function typo(s){ return s.replace(SHORT,"$1$2 ").replace(SHORT,"$1$2 ").replace(/\s—/g," —"); }
+    function typo(s){ return s.replace(SHORT,"$1$2 ").replace(SHORT,"$1$2 ").replace(/\s—/g," —").replace(/([^\s<>]+-[^\s<>]+)/g,'<span style="white-space:nowrap">$1</span>'); }
 
     var params = new URLSearchParams(window.location.search);
     if (params.get("guides")) document.documentElement.classList.add("guides");
@@ -131,15 +153,12 @@
     var rank = (params.get("rank") || "").split(",").filter(Boolean);
 
     var html = "";
-    [[primaryKey, "Домінантна роль", false], [secondaryKey, "Роль, яка тебе доповнює", true]].forEach(function (r) {
-      var key = r[0], role = ROLES[key];
+    [[primaryKey, "Домінантна роль"], [secondaryKey, "Роль, яка тебе доповнює"]].forEach(function (r) {
+      var role = ROLES[r[0]];
       if (!role) return;
-      // та сама логіка, що на сторінці результату
-      var desc = r[2] && key !== "provoker" ? "Завдяки цій ролі ти " + role.effect + "." : role.primary;
       html += '<div class="card role" style="--role:' + role.color + '"><p class="label">' + r[1] + '</p>' +
-        '<div class="rhead"><img class="roleImg" src="result-role-images/' + role.img + '.png" alt="' + role.name + '">' +
-        '<p class="value">' + typo(role.value) + '</p></div>' +
-        '<p class="desc">' + typo(desc) + '</p></div>';
+        '<div class="rrow"><img class="roleImg" src="result-role-images/' + role.img + '.png" alt="' + role.name + '">' +
+        '<p class="motive">' + typo(role.motive) + '</p></div></div>';
     });
     document.getElementById("roles").innerHTML = html;
 
@@ -160,9 +179,8 @@
     // для довгих комбінацій крок за кроком стискаємо відступи, потім шрифт.
     function fit() {
       var frame = document.getElementById("frame"), safe = document.getElementById("safe");
-      var steps = [["--fs","29px"],["--fs","28px"],["--gapHead","24px"],["--headGap","16px"],["--rankH","58px"],
-                   ["--fsV","26px"],["--fs","27px"],["--pad","20px"],["--gapSec","16px"],["--fs","26px"],["--fsV","25px"],
-                   ["--fs","25px"],["--fsV","24px"],["--fs","24px"]];
+      var steps = [["--gapHead","40px"],["--gapSec","32px"],["--gapToc","20px"],["--gapRoles","20px"],["--fs","26px"],["--rankH","62px"],
+                   ["--fs","25px"],["--imgW","330px"],["--fs","24px"]];
       function overflows(){
         var a = safe.firstElementChild.getBoundingClientRect(), b = safe.lastElementChild.getBoundingClientRect();
         return b.bottom - a.top > safe.clientHeight + 0.5;

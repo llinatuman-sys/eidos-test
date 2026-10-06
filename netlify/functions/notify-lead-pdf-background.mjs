@@ -52,39 +52,47 @@ export default async (req) => {
 
     const origin = process.env.URL || new URL(req.url).origin;
 
+    const ROLE_NAMES = {
+      architect: "Архітектор", craft: "Ремісник", friend: "Друг", guide: "Провідник",
+      method: "Методолог", provoker: "Провокатор", scout: "Розвідник",
+    };
+    const leadNumber = Number(data.leadNumber);
     const leadText = [
-      `Новий лід EIDOS`,
+      Number.isFinite(leadNumber) && leadNumber > 0 ? `Лід №${leadNumber} · EIDOS` : `Новий лід EIDOS`,
       `Email: ${data.email || "—"}`,
       data.telegram ? `Telegram: ${data.telegram}` : null,
-      `Результат: ${primaryRole} + ${secondaryRole}`,
+      `Результат: ${ROLE_NAMES[primaryRole]} + ${ROLE_NAMES[secondaryRole]}`,
       data.resultUrl ? `Сторінка: ${data.resultUrl}` : null,
     ]
       .filter(Boolean)
       .join("\n");
 
-    const tg = (method, body) =>
-      fetch(`https://api.telegram.org/bot${botToken}/${method}`, { method: "POST", body }).then(async (res) => {
-        if (!res.ok) {
-          const errText = await res.text().catch(() => "");
-          throw new Error(`Telegram ${method} ${res.status}: ${errText.slice(0, 300)}`);
-        }
-      });
-    const sendText = (text) => {
+    // Telegram call; returns the sent message's id (needed to attach the PDF as a reply)
+    const tg = async (method, body) => {
+      const res = await fetch(`https://api.telegram.org/bot${botToken}/${method}`, { method: "POST", body });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json.ok) {
+        throw new Error(`Telegram ${method} ${res.status}: ${JSON.stringify(json).slice(0, 300)}`);
+      }
+      return json.result && json.result.message_id;
+    };
+    const baseForm = (replyTo) => {
       const form = new FormData();
       form.append("chat_id", chatId);
+      if (replyTo) form.append("reply_parameters", JSON.stringify({ message_id: replyTo, allow_sending_without_reply: true }));
+      return form;
+    };
+    const sendText = (text, replyTo) => {
+      const form = baseForm(replyTo);
       form.append("text", text);
-      form.append("disable_web_page_preview", "true");
+      form.append("link_preview_options", JSON.stringify({ is_disabled: true }));
       return tg("sendMessage", form);
     };
+    const reason = (e) => String((e && e.message) || e).slice(0, 400);
 
-    // 1. Lead data goes first, as plain text - it must arrive even if the
-    //    PDF or the picture fails to generate.
-    await sendText(leadText).catch((e) => console.error("notify-lead-pdf:", e));
-
-    // 2. PDF, then the picture - one after the other, not in parallel:
-    //    PDFShift may reject a second simultaneous conversion, which is how
-    //    the PDF went missing while the picture still arrived. A failed
-    //    attempt is retried once after a short pause.
+    // PDFShift is called one conversion at a time (a second simultaneous
+    // conversion may be rejected - that's how the PDF once went missing),
+    // and a failed attempt is retried once after a short pause.
     const withRetry = async (fn) => {
       try {
         return await fn();
@@ -95,30 +103,50 @@ export default async (req) => {
       }
     };
 
+    // Both files are generated first (one at a time), then sent together as
+    // ONE message: a Telegram album of two files - the picture and the PDF -
+    // with the lead data as the caption at the bottom of the album.
+    const cardName = `eidos-${primaryRole}-${secondaryRole}-card.png`;
+    const pdfName = `eidos-${primaryRole}-${secondaryRole}.pdf`;
+    let card = null, pdf = null;
+    const problems = [];
     try {
-      const pdf = await withRetry(() => generatePdfBuffer({ primaryRole, secondaryRole, rank, origin }));
-      const form = new FormData();
-      form.append("chat_id", chatId);
-      form.append("caption", `PDF: ${data.email || ""}`.trim());
-      form.append("document", new Blob([pdf], { type: "application/pdf" }), `eidos-${primaryRole}-${secondaryRole}.pdf`);
-      await tg("sendDocument", form);
-    } catch (e) {
-      console.error("notify-lead-pdf: PDF failed", e);
-      // Say so in Telegram too, with the reason - otherwise a missing PDF
-      // is invisible unless someone opens the Netlify function logs.
-      await sendText(`⚠️ PDF для ${data.email || "ліда"} не згенерувався.\nПричина: ${String(e && e.message || e).slice(0, 500)}`)
-        .catch((err) => console.error("notify-lead-pdf:", err));
-    }
-
-    try {
-      const card = await withRetry(() => generateShareCardBuffer({ primaryRole, secondaryRole, rank, origin }));
-      const form = new FormData();
-      form.append("chat_id", chatId);
-      form.append("photo", new Blob([card], { type: "image/png" }), `eidos-${primaryRole}-${secondaryRole}-card.png`);
-      await tg("sendPhoto", form);
+      card = await withRetry(() => generateShareCardBuffer({ primaryRole, secondaryRole, rank, origin }));
     } catch (e) {
       console.error("notify-lead-pdf: share card failed", e);
-      await sendText(`⚠️ Картинка для ${data.email || "ліда"} не згенерувалась.\nПричина: ${String(e && e.message || e).slice(0, 500)}`)
+      problems.push(`⚠️ Картинка не згенерувалась: ${reason(e)}`);
+    }
+    try {
+      pdf = await withRetry(() => generatePdfBuffer({ primaryRole, secondaryRole, rank, origin }));
+    } catch (e) {
+      console.error("notify-lead-pdf: PDF failed", e);
+      problems.push(`⚠️ PDF не згенерувався: ${reason(e)}`);
+    }
+    const caption = [leadText, ...problems].join("\n\n").slice(0, 1024);
+
+    try {
+      if (card && pdf) {
+        const form = baseForm();
+        form.append("media", JSON.stringify([
+          { type: "document", media: "attach://card" },
+          { type: "document", media: "attach://pdf", caption },
+        ]));
+        form.append("card", new Blob([card], { type: "image/png" }), cardName);
+        form.append("pdf", new Blob([pdf], { type: "application/pdf" }), pdfName);
+        await tg("sendMediaGroup", form);
+      } else if (card || pdf) {
+        // only one file came out - send it alone, with the data and the reason
+        const form = baseForm();
+        form.append("caption", caption);
+        form.append("document", card ? new Blob([card], { type: "image/png" }) : new Blob([pdf], { type: "application/pdf" }), card ? cardName : pdfName);
+        await tg("sendDocument", form);
+      } else {
+        await sendText(caption);
+      }
+    } catch (e) {
+      // if Telegram rejected the album for any reason, the data still has to arrive
+      console.error("notify-lead-pdf: sending failed", e);
+      await sendText(`${caption}\n\n⚠️ Не вдалося надіслати файли: ${reason(e)}`)
         .catch((err) => console.error("notify-lead-pdf:", err));
     }
   } catch (err) {
